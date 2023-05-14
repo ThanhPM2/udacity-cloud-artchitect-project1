@@ -1,0 +1,54 @@
+1) Connect to primary DB:
+root@ip-10-1-10-121:~# mysql -h udacity.cd585di4zcgs.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 279
+Server version: 8.0.32 Source distribution
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+2) Create table:
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> use udacity
+Database changed
+mysql> CREATE TABLE IF NOT EXISTS books ( book_id INT AUTO_INCREMENT, title VARCHAR(255) NOT NULL, author VARCHAR(255), publish_date DATE, description TEXT, PRIMARY KEY (book_id) )ENGINE=INNODB;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> show tables
+    -> ;
++-------------------+
+| Tables_in_udacity |
++-------------------+
+| books             |
++-------------------+
+1 row in set (0.00 sec)
+
+3) Write data to table:
+mysql> INSERT INTO books(`title`,`author`) VALUES ('LearnUdacity' ,'MinhThanh');
+Query OK, 1 row affected (0.01 sec)
+
+4) Read data from table
+mysql> select * from books;
++---------+--------------+-----------+--------------+-------------+
+| book_id | title        | author    | publish_date | description |
++---------+--------------+-----------+--------------+-------------+
+|       1 | LearnUdacity | MinhThanh | NULL         | NULL        |
++---------+--------------+-----------+--------------+-------------+
+1 row in set (0.00 sec)
